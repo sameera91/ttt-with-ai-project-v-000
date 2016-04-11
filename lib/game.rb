@@ -21,7 +21,7 @@ class Game
   end
 
   def current_player
-    self.board.turn_count % 2 == 0 ? self.player_1 : self.player_2
+    self.board.turn_count.even? ? self.player_1 : self.player_2
   end
 
   def draw?
@@ -70,7 +70,7 @@ class Game
   end
 
   def play
-    while !over?
+    until over?
       turn
     end
 

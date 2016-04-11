@@ -7,7 +7,7 @@ class Board
   end
 
   def reset!
-    @cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    @cells = Array.new(9, " ")
   end
 
   def display
@@ -29,9 +29,7 @@ class Board
   end
 
   def turn_count
-    count = 0
-    self.cells.each {|cell| count += 1 if cell != " "}
-    count
+    self.cells.count {|cell| cell != " "}
   end
 
   def taken?(position)
@@ -39,7 +37,7 @@ class Board
   end
 
   def valid_move?(position)
-    if position.to_i >= 1 && position.to_i <= 9
+    if position.to_i.between?(1,9)
       return true if !taken?(position)
     else
       return false
